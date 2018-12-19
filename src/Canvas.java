@@ -44,28 +44,39 @@ public class Canvas extends Application {
         //defining the axes
         final NumberAxis xAxis = new NumberAxis();
         final NumberAxis yAxis = new NumberAxis();
-        xAxis.setLabel("Number of Month");
+//        xAxis.setLabel("Number of Month");
         //creating the chart
         final LineChart<Number,Number> lineChart = 
                 new LineChart<Number,Number>(xAxis,yAxis);
                 
-        lineChart.setTitle("Stock Monitoring, 2010");
+//        lineChart.setTitle("Stock Monitoring, 2010");
         //defining a series
         XYChart.Series<Number, Number> series = new XYChart.Series();
-        series.setName("My portfolio");
+//        series.setName("My Nigger");
         //populating the series with data
-        series.getData().add(new XYChart.Data<Number, Number>(1, 23));
-        series.getData().add(new XYChart.Data<Number, Number>(2, 14));
-        series.getData().add(new XYChart.Data<Number, Number>(3, 15));
-        series.getData().add(new XYChart.Data<Number, Number>(4, 24));
-        series.getData().add(new XYChart.Data<Number, Number>(5, 34));
-        series.getData().add(new XYChart.Data<Number, Number>(6, 36));
-        series.getData().add(new XYChart.Data<Number, Number>(7, 22));
-        series.getData().add(new XYChart.Data<Number, Number>(8, 45));
-        series.getData().add(new XYChart.Data<Number, Number>(9, 43));
-        series.getData().add(new XYChart.Data<Number, Number>(10, 17));
-        series.getData().add(new XYChart.Data<Number, Number>(11, 29));
-        series.getData().add(new XYChart.Data<Number, Number>(12, 25));
+        series.getData().add(new XYChart.Data<Number, Number>(0.5, 30));
+        series.getData().add(new XYChart.Data<Number, Number>(0.5, 5));
+        series.getData().add(new XYChart.Data<Number, Number>(1.5, 5));
+        series.getData().add(new XYChart.Data<Number, Number>(1.5, 30));
+        series.getData().add(new XYChart.Data<Number, Number>(2.5, 30));
+        series.getData().add(new XYChart.Data<Number, Number>(2.5, 5));
+        series.getData().add(new XYChart.Data<Number, Number>(1.5, 5));
+        series.getData().add(new XYChart.Data<Number, Number>(3.5, 5));
+        series.getData().add(new XYChart.Data<Number, Number>(3.5, 30));
+        series.getData().add(new XYChart.Data<Number, Number>(3.5, 5));
+        series.getData().add(new XYChart.Data<Number, Number>(4.5, 5));
+//        series.getData().add(new XYChart.Data<Number, Number>(1, 23));
+//        series.getData().add(new XYChart.Data<Number, Number>(2, 14));
+//        series.getData().add(new XYChart.Data<Number, Number>(3, 15));
+//        series.getData().add(new XYChart.Data<Number, Number>(4, 24));
+//        series.getData().add(new XYChart.Data<Number, Number>(5, 34));
+//        series.getData().add(new XYChart.Data<Number, Number>(6, 36));
+//        series.getData().add(new XYChart.Data<Number, Number>(7, 22));
+//        series.getData().add(new XYChart.Data<Number, Number>(8, 45));
+//        series.getData().add(new XYChart.Data<Number, Number>(9, 43));
+//        series.getData().add(new XYChart.Data<Number, Number>(10, 17));
+//        series.getData().add(new XYChart.Data<Number, Number>(11, 29));
+//        series.getData().add(new XYChart.Data<Number, Number>(12, 25));
         
         Scene scene  = new Scene(lineChart,800,600);
         lineChart.getData().add(series);

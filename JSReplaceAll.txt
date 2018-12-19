@@ -2,3 +2,6 @@ String.prototype.replaceAll = function(search, replacement) {
     var target = this;
     return target.replace(new RegExp(search, 'g'), replacement);
 };
+
+([0-9x]+)\^([0-9x]+)
+Math.pow($1, $2)
