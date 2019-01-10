@@ -1,5 +1,7 @@
 
 
+import javax.script.ScriptException;
+
 import javafx.application.Application;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -80,7 +82,11 @@ public class Canvas extends Application {
         
         Scene scene  = new Scene(lineChart,800,600);
         lineChart.getData().add(series);
-       
+        try {
+			FunctionParser.parse("3x^2+5x+1");
+		} catch (ScriptException e) {
+//			e.printStackTrace();
+		}
         stage.setScene(scene);
         stage.show();
     }
