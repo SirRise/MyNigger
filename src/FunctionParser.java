@@ -22,13 +22,17 @@ public class FunctionParser {
 	
 	private static final ScriptEngine js = new ScriptEngineManager().getEngineByName("nashorn");
 	
-	static /*XYChart.Series<Number, Number>*/String[] parse(String func, int... options) throws ScriptException {
+	static String[] parse(String func) throws ScriptException {
+		return parse(func, 0, 100, 10);
+	}
+	
+	static /*XYChart.Series<Number, Number>*/String[] parse(String func, int start, int end, int step) throws ScriptException {
 		
 		String res[] = new String[10];
 		
 		String jsFormattedFunc = func.replaceAll(powRegex[0], powRegex[1]);
 		
-		for (int i = 0; i < 100; i += 10) {
+		for (int i = start; i < end; i += step) {
 			res[i/10] = js.eval(
 					jsFormattedFunc.replaceAll(powRegex[2], powRegex[3]).replaceAll("x", Integer.toString(i))
 			).toString();
