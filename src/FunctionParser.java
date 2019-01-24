@@ -4,12 +4,10 @@ import javax.script.ScriptException;
 
 import javafx.scene.chart.XYChart;
 
-import java.util.regex.*;
-
-
-
 public class FunctionParser {
 	
+	private static final ScriptEngine js = new ScriptEngineManager().getEngineByName("nashorn");
+	private static XYChart.Series<Number, Number> series = new XYChart.Series<>(); 
 	private static final String powRegex[] = {
 			"([0-9x]+)\\^([0-9x]+)",
 			"Math.pow($1, $2)",
@@ -17,34 +15,17 @@ public class FunctionParser {
 			"$1\\*x"
 	};
 	
-	
-	
-	
-	private static final ScriptEngine js = new ScriptEngineManager().getEngineByName("nashorn");
-	
-	static String[] parse(String func) throws ScriptException {
-		return parse(func, 0, 100, 10);
-	}
-	
-	static /*XYChart.Series<Number, Number>*/String[] parse(String func, int start, int end, int step) throws ScriptException {
-		
-		String res[] = new String[10];
-		
-		String jsFormattedFunc = func.replaceAll(powRegex[0], powRegex[1]);
-		
-		for (int i = start; i < end; i += step) {
-			res[i/10] = js.eval(
-					jsFormattedFunc.replaceAll(powRegex[2], powRegex[3]).replaceAll("x", Integer.toString(i))
-			).toString();
+	static XYChart.Series<Number, Number> parse(String func, int... options) throws ScriptException {
+		String jsFormattedFunc = func.replaceAll(powRegex[0], powRegex[1]).replaceAll(powRegex[2], powRegex[3]);
+		System.out.println(jsFormattedFunc);
+		for (int i = 10; i < 100; i+= 10) {
+			series.getData().add(
+					new XYChart.Data<Number, Number>(
+							i,
+							Float.parseFloat(js.eval(jsFormattedFunc.replaceAll("x", Integer.toString(i))).toString())
+					)
+			);
 		}
-		for (String s : res) {
-			System.out.println(s);
-		}
-		return res;
+		return series;
 	}
 }
-/*
-	3x^2+2x+5 => Math.pow(3x, 2)+2*x+5
-	([0-9x]+)\^([0-9x]+) => Math.pow($1, $2)
-	([0-9]+)x => ([0-9]+)x
-*/
